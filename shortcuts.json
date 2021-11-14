@@ -1,0 +1,16 @@
+{
+    "python3": "C:\\Users\\Florian\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe",
+    "java16": "D:\\programmiersprachen\\java\\run\\jdk-16\\bin\\java.exe",
+    "java15": "D:\\programmiersprachen\\java\\run\\jdk-15\\bin\\java.exe",
+    "java14": "D:\\programmiersprachen\\java\\run\\jdk-14\\bin\\java.exe",
+    "java8": "D:\\programmiersprachen\\java\\run\\jdk-8\\bin\\java.exe",
+    
+    "userMe": "C:\\Users\\Florian",
+    "help":"echo py-boom and then py-boomr",
+
+    "scut": "python3 D:\\programmiersprachen\\Python\\1txt\\keyreader\\shortcut.py",
+    "pyboom":"cd D:\\programmiersprachen\\Python\\2D\\boom",
+    "pyboomr":"python3 .\\Main.py full",
+
+    "mystuff": "C:\\Users\\Florian\\AppData\\Roaming\\.mystuff\\"
+}
