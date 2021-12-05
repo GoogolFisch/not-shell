@@ -2,7 +2,6 @@ from color import Fore, Back, Style, Cursor
 import reader
 import os
 
-
 def true_split(message,spliting=" ",doBreak=(">",)) -> list:
 	m = [""]
 	b = False
@@ -61,22 +60,32 @@ class Main:
 		history = ["",""]
 		history_counter = 0
 		edit_counter = 0
+		completeG = ""
 
-		print(Fore.CYAN+cwd+Fore.RED+"$"+Fore.RESET,end="")
+		print(Fore.CYAN + cwd + Fore.RED + "$" + Fore.RESET,end="")
 		while True:
 			key = reader.readkey()
-			if key == reader.key.ENTER:
+			if key is None:continue
+			elif key == reader.key.ENTER:
 				out = self.getReal(data)
 				print("\n"+out)
 				if out == "exit":return
 				elif out[:3] == "cd ":
-					os.chdir(out[3:])
-					cwd = os.getcwd()
+					try:
+						os.chdir(out[3:])
+						cwd = os.getcwd()
+					except:
+						print("not possible >" + out[3:] + "<")
 				elif out == "sc-1":print(self.shortcuts)
 				else:
-					os.system(
-						out.replace("ls-1","dir").replace("copy-1","copy").replace("mv-1","move")
-					)
+					try:
+						os.system(
+							out.replace("ls-1","dir").replace("copy-1","copy").replace("mv-1","move")
+						)
+					except Exception as e:
+						print(Fore.RED + str(e) + Fore.RESET)
+					except KeyboardInterrupt as e:
+						print(Fore.RED + str(e) + Fore.RESET)
 				if out != history[-2] and data != "":
 					history.append(data)
 				history_counter = len(history) - 1
@@ -112,6 +121,7 @@ class Main:
 					edit_counter -= 1
 					print("\b" + data[edit_counter:],end="  \b\b" + "\b" * (len(data) - edit_counter))
 					print("",end="",flush=True)
+
 			elif len(key) == 1 and (key == "\t"):
 				a = true_split(data," ")
 				if a != []:
