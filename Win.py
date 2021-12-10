@@ -63,7 +63,7 @@ class Main:
 		edit_counter = 0
 		completeG = ""
 
-		print(Fore.CYAN + cwd + Fore.RED + "$" + Fore.RESET,end="")
+		print(Fore.CYAN + cwd + Fore.RED + "$" + Fore.RESET,end="",flush=True)
 		while True:
 			key = reader.readkey()
 			if key is None:continue
@@ -76,23 +76,23 @@ class Main:
 						os.chdir(out[3:])
 						cwd = os.getcwd()
 					except:
-						print("not possible >" + out[3:] + "<")
-				elif out == "sc-1":print(self.shortcuts)
+						print("not possible >" + out[3:] + "<",flush=True)
+				elif out == "sc-1":print(self.shortcuts,flush=True)
 				else:
 					try:
 						os.system(
 							out.replace("ls-1","dir").replace("copy-1","copy").replace("mv-1","move")
 						)
 					except Exception as e:
-						print(Fore.RED + str(e) + Fore.RESET)
+						print(Fore.RED + str(e) + Fore.RESET,flush=True)
 					except KeyboardInterrupt as e:
-						print(Fore.RED + str(e) + Fore.RESET)
+						print(Fore.RED + str(e) + Fore.RESET,flush=True)
 				if out != history[-2] and data != "":
 					history.append(data)
 				history_counter = len(history) - 1
 				data = ""
 				edit_counter = 0
-				print(Fore.CYAN+cwd+Fore.RED+"$"+Fore.RESET,end="",flush=True)
+				print(Fore.CYAN+cwd+Fore.RED+"$"+Fore.RESET,end="",flush=True,flush=True)
 
 			elif key == reader.key.UP:
 				if history_counter > 0:
@@ -132,14 +132,14 @@ class Main:
 						if completeG == c:
 							edit_counter += len(completeG)
 							data += c
-							print(end=c)
+							print(end=c,flush=True)
 						else:
 							completeG = c
-							print(end=Fore.LIGHTBLACK_EX+c+"\b"*len(c)+Fore.RESET)
+							print(end=Fore.LIGHTBLACK_EX+c+"\b"*len(c)+Fore.RESET,flush=True)
 
 			elif len(key) == 1:
 				data = data[:edit_counter] + key + data[edit_counter:]
 				print(data[edit_counter:],end="\b" * len(data[edit_counter + 1:]),flush=True)
 				edit_counter += 1
 			else:
-				print([hex(ord(l)) for l in key])
+				print([hex(ord(l)) for l in key],flush=True)
