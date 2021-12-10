@@ -80,7 +80,7 @@ class Main:
 				else:
 					try:
 						os.system(
-							out.replace("ls-1","dir").replace("copy-1","copy").replace("mv-1","move")
+							out.replace("ls-1","ls").replace("copy-1","copy").replace("mv-1","move")
 						)
 					except Exception as e:
 						print(Fore.RED + str(e) + Fore.RESET)
@@ -115,7 +115,7 @@ class Main:
 					print(data[edit_counter],end="",flush=True)
 					edit_counter += 1
 
-			elif len(key) == 1 and (key == reader.key.BACKSPACE2):
+			elif len(key) == 1 and (key == reader.key.BACKSPACE):
 				if 0 < edit_counter <= len(data):
 					data = data[:edit_counter - 1] + data[edit_counter:]
 					edit_counter -= 1
@@ -131,7 +131,7 @@ class Main:
 						if completeG == c:
 							edit_counter += len(completeG)
 							data += c
-							print(end=c)
+							print(end=c,flush=True)
 						else:
 							completeG = c
 							print(end=Fore.LIGHTBLACK_EX+c+"\b"*len(c)+Fore.RESET,flush=True)
@@ -141,4 +141,4 @@ class Main:
 				print(data[edit_counter:],end="\b" * len(data[edit_counter + 1:]),flush=True)
 				edit_counter += 1
 			else:
-				print([hex(ord(l)) for l in key],flush=True)
+				print([hex(ord(l)) for l in key])
