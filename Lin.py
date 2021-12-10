@@ -62,7 +62,7 @@ class Main:
 		edit_counter = 0
 		completeG = ""
 
-		print(Fore.CYAN + cwd + Fore.RED + "$" + Fore.RESET,end="")
+		print(Fore.CYAN + cwd + Fore.RED + "$" + Fore.RESET,end="",flush=True)
 		while True:
 			key = reader.readkey()
 			if key is None:continue
@@ -134,11 +134,11 @@ class Main:
 							print(end=c)
 						else:
 							completeG = c
-							print(end=Fore.LIGHTBLACK_EX+c+"\b"*len(c)+Fore.RESET)
+							print(end=Fore.LIGHTBLACK_EX+c+"\b"*len(c)+Fore.RESET,flush=True)
 
 			elif len(key) == 1:
 				data = data[:edit_counter] + key + data[edit_counter:]
 				print(data[edit_counter:],end="\b" * len(data[edit_counter + 1:]),flush=True)
 				edit_counter += 1
 			else:
-				print([hex(ord(l)) for l in key])
+				print([hex(ord(l)) for l in key],flush=True)
